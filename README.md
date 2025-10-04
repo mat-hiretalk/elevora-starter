@@ -17,36 +17,42 @@ A production-ready Next.js 15 starter template with tRPC, Prisma, Inngest, Bette
 
 ### Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/YOUR_REPO&env=DATABASE_URL,BETTER_AUTH_SECRET&envDescription=Required%20environment%20variables&envLink=https://github.com/YOUR_USERNAME/YOUR_REPO%23environment-variables)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mat-hiretalk/elevora-starter&env=DATABASE_URL,BETTER_AUTH_SECRET&envDescription=Required%20environment%20variables&envLink=https://github.com/YOUR_USERNAME/YOUR_REPO%23environment-variables)
 
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone <your-repo-url>
    cd starter-template
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env
    ```
 
    Update `.env` with your values:
+
    - `DATABASE_URL`: PostgreSQL connection string
    - `BETTER_AUTH_SECRET`: Random 32+ character string (use `openssl rand -base64 32`)
 
 4. **Set up the database**
+
    ```bash
    pnpm db:push
    ```
 
 5. **Run the development server**
+
    ```bash
    pnpm dev              # Next.js only (port 3888)
    pnpm dev:with-inngest # Next.js + Inngest dev server
@@ -99,10 +105,12 @@ A production-ready Next.js 15 starter template with tRPC, Prisma, Inngest, Bette
 ### Optional
 
 OAuth providers:
+
 - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`
 - `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`
 
 AI providers:
+
 - `ANTHROPIC_API_KEY`
 - `OPENAI_API_KEY`
 
@@ -135,6 +143,7 @@ pnpm db:push
 ## Authentication
 
 BetterAuth is configured with:
+
 - Email/password authentication
 - Google OAuth (optional)
 - GitHub OAuth (optional)
@@ -147,13 +156,13 @@ Example router at `lib/trpc/routers/example.ts`:
 
 ```typescript
 // Server-side
-import { createCaller } from '@/lib/trpc/server';
+import { createCaller } from "@/lib/trpc/server";
 const caller = await createCaller();
-const data = await caller.example.hello({ name: 'World' });
+const data = await caller.example.hello({ name: "World" });
 
 // Client-side
-import { trpc } from '@/lib/trpc/client';
-const { data } = trpc.example.hello.useQuery({ name: 'World' });
+import { trpc } from "@/lib/trpc/client";
+const { data } = trpc.example.hello.useQuery({ name: "World" });
 ```
 
 ## Inngest
@@ -161,11 +170,11 @@ const { data } = trpc.example.hello.useQuery({ name: 'World' });
 Example function at `lib/inngest/functions/example.ts`. Trigger events with:
 
 ```typescript
-import { inngest } from '@/lib/inngest/client';
+import { inngest } from "@/lib/inngest/client";
 
 await inngest.send({
-  name: 'app/example',
-  data: { message: 'Hello' },
+  name: "app/example",
+  data: { message: "Hello" },
 });
 ```
 
@@ -184,6 +193,7 @@ Monitor functions at http://localhost:8288 during development.
 ### Other Platforms
 
 The template works on any platform that supports Next.js:
+
 - Set environment variables
 - Run `pnpm build && pnpm start`
 - Ensure PostgreSQL is accessible
